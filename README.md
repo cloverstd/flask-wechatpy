@@ -22,7 +22,7 @@ WECHAT_OAUTH_URI | None | oauth 时的回调地址，默认为当前 url
 
 #Usage
 
-see [demp.py](demo.py)
+see [demo.py](demo.py)
 
 ##OAuth
 
