@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 # encoding: utf-8
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
     name='Flask-wechatpy',
-    version='0.1.0',
+    version='0.1.2',
     url='https://github.com/cloverstd/flask-wechatpy',
     license='MIT',
     author='cloverstd',
     author_email='cloverstd@gmail.com',
     description='wechatpy for flask extension',
     long_description=__doc__,
-    py_modules=['flask_wechatpy'],
+    packages=find_packages(),
     zip_safe=False,
     include_package_data=True,
     platforms='any',
