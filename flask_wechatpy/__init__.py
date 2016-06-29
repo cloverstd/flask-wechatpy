@@ -4,6 +4,7 @@
 import functools
 from flask import request, current_app, abort, redirect
 from wechatpy.replies import BaseReply
+from wechatpy.pay import WeChatPay as ori_WeChatPay
 from wechatpy.utils import check_signature
 from wechatpy.exceptions import (
     InvalidSignatureException,
@@ -269,3 +270,43 @@ def oauth(check_func=_check_user, set_user=_set_user, scope='snsapi_base', state
             return method(*args, **kwargs)
         return wrapper
     return decorater
+
+
+class WechatPay(object):
+
+    def __init__(self, app=None):
+
+        self._wechat_client = None
+
+        if app is not None:
+            self.init_app(app)
+
+    def init_app(self, app):
+        config = app.config
+        config.setdefault('WECHAT_APPID', None)
+        config.setdefault('WECHAT_PAY_API_KEY', None)
+        config.setdefault('WECHAT_PAY_MCH_CERT', None)
+        config.setdefault('WECHAT_PAY_MCH_KEY', None)
+        config.setdefault('WECHAT_PAY_MCH_ID', None)
+        config.setdefault('WECHAT_PAY_SUB_MCH_ID', None)
+
+        assert config['WECHAT_APPID'] is not None
+        assert config['WECHAT_PAY_API_KEY'] is not None
+        assert config['WECHAT_PAY_MCH_CERT'] is not None
+        assert config['WECHAT_PAY_MCH_KEY'] is not None
+        assert config['WECHAT_PAY_MCH_ID'] is not None
+
+        self._wechat_pay = ori_WeChatPay(
+            appid=config['WECHAT_APPID'],
+            api_key=config['WECHAT_PAY_API_KEY'],
+            mch_id=config['WECHAT_PAY_MCH_ID'],
+            sub_mch_id=config.get('WECHAT_PAY_SUB_MCH_ID', None),
+            mch_cert=config['WECHAT_PAY_MCH_CERT'],
+            mch_key=config['WECHAT_PAY_MCH_KEY'],
+        )
+        if not hasattr(app, 'extensions'):
+            app.extensions = {}
+        app.extensions['wechat_pay'] = self
+
+    def __getattr__(self, name):
+        return getattr(self._wechat_pay, name)

@@ -55,3 +55,7 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# wechat pay
+apiclient_cert.pem
+apiclient_key.pem

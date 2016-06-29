@@ -19,6 +19,11 @@ WECHAT_SESSTION_MEMCACHED | None | eg. 127.0.0.1:11211
 WECHAT_AES_KEY | None | 微信消息加密的 key，如果是企业号则必填
 WECHAT_TOKEN | None | 微信接收消息时的 token
 WECHAT_OAUTH_URI | None | oauth 时的回调地址，默认为当前 url
+WECHAT_PAY_API_KEY | None | 微信支付 api key
+WECHAT_PAY_MCH_CERT | None | 微信支付 商户证书路径 eg. apiclient_cert.pem
+WECHAT_PAY_MCH_KEY | None | 微信支付 商户密钥路径 eg. apiclient_key.pem
+WECHAT_PAY_MCH_ID | None | 微信支付 商户号
+WECHAT_PAY_SUB_MCH_ID | None | 微信支付 子商户号，非必填
 
 #Usage
 
