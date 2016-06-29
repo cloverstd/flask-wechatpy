@@ -27,6 +27,8 @@ WECHAT_PAY_SUB_MCH_ID | None | 微信支付 子商户号，非必填
 
 #Usage
 
+see [demo.py](demo.py)
+
 ##OAuth
 
 默认使用 flask session 储存 oauth 验证后的 openid（企业号则为 user_id）
