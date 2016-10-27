@@ -23,6 +23,8 @@ class Wechat(object):
             self.init_app(app)
 
     def init_app(self, app):
+        self.app = app
+
         config = app.config
         config.setdefault('WECHAT_APPID', None)
         config.setdefault('WECHAT_SECRET', None)
