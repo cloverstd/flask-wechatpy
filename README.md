@@ -1,9 +1,9 @@
-#Flask-Wechatpy
+# Flask-Wechatpy
 
 Flask 的 [wechatpy](http://wechatpy.readthedocs.org) 扩展
 
 
-#Configuration
+# Configuration
 
 配置 | 默认值 | 说明
 ------------ | ------------- | ------------
@@ -25,11 +25,11 @@ WECHAT_PAY_MCH_KEY | None | 微信支付 商户密钥路径 eg. apiclient_key.pe
 WECHAT_PAY_MCH_ID | None | 微信支付 商户号
 WECHAT_PAY_SUB_MCH_ID | None | 微信支付 子商户号，非必填
 
-#Usage
+# Usage
 
 see [demo.py](demo.py)
 
-##OAuth
+## OAuth
 
 默认使用 flask session 储存 oauth 验证后的 openid（企业号则为 user_id）
 
@@ -39,6 +39,6 @@ see [demo.py](demo.py)
 * `scope`: snsapi_base 或者 snsapi_userinfo，当 scope 为 snsapi_userinfo 时，`set_user` 的参数会是用户信息，包含头像等信息
 * `state`: 可以是一个函数，默认为 None，用来验证请求
 
-##wechat_required
+## wechat_required
 
 微信回调模式下的`router`辅助的 decorator，当验证通过后，可以通过`request.wechat_msg`获取发来的消息，并且可以直接在`router`里返回`BaseReply`类型的回复类型
