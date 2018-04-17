@@ -43,7 +43,7 @@ class Wechat(object):
             from wechatpy.enterprise import WeChatClient
 
         if config['WECHAT_SESSION_TYPE'] == 'redis':
-            from wechat.session.redisstorage import RedisStorage
+            from wechatpy.session.redisstorage import RedisStorage
             from redis import Redis
             if config.get('WECHAT_SESSION_REDIS_URL'):
                 redis = Redis.from_url(config['WECHAT_SESSION_REDIS_URL'])
