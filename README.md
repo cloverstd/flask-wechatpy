@@ -24,6 +24,8 @@ WECHAT_PAY_MCH_CERT | None | 微信支付 商户证书路径 eg. apiclient_cert.
 WECHAT_PAY_MCH_KEY | None | 微信支付 商户密钥路径 eg. apiclient_key.pem
 WECHAT_PAY_MCH_ID | None | 微信支付 商户号
 WECHAT_PAY_SUB_MCH_ID | None | 微信支付 子商户号，非必填
+WECHAT_OPEN_APP_ID | None | 微信开放平台 APP ID
+WECHAT_OPEN_APP_SECRET | None | 微信开放平台 APP SECRET
 
 # Usage
 

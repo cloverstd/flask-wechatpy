@@ -248,13 +248,19 @@ def oauth(check_func=_check_user, set_user=_set_user, scope='snsapi_base', state
             redirect_uri = current_app.config.get('WECHAT_OAUTH_URI')
             if not redirect_uri:
                 redirect_uri = request.url
-            wechat_oauth = WeChatOAuth(
-                current_app.config['WECHAT_APPID'],
-                current_app.config['WECHAT_SECRET'],
-                redirect_uri,
-                scope,
-                _state
-            )
+
+            user_agent = request.headers.get('User-Agent').lower()
+            if 'micromessenger' in user_agent:
+                app_id = current_app.config['WECHAT_APPID']
+                secret = current_app.config['WECHAT_SECRET']
+                url_method = 'authorize_url'
+            else:
+                app_id = current_app.config['WECHAT_OPEN_APP_ID']
+                secret = current_app.config['WECHAT_OPEN_APP_SECRET']
+                url_method = 'qrconnect_url'
+
+            wechat_oauth = WeChatOAuth(app_id, secret, redirect_uri, scope, _state)
+
             user = check_func()
             if request.args.get('code') and not user:
                 try:
@@ -268,7 +274,7 @@ def oauth(check_func=_check_user, set_user=_set_user, scope='snsapi_base', state
                         user_info = wechat_oauth.get_user_info()
                         set_user(user_info)
             elif not user:
-                return redirect(wechat_oauth.authorize_url)
+                return redirect(getattr(wechat_oauth, url_method))
             return method(*args, **kwargs)
         return wrapper
     return decorater
