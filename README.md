@@ -14,8 +14,8 @@ WECHAT_SESSION_TYPE | None | wechatpy session 类型，可选 redis，memcached�
 WECHAT_SESSION_PREFIX | flask-wechatpy | wechatpy session prefix
 WECHAT_AUTO_RETRY | True | wechatpy 异常时自动重试
 WECHAT_TIMEOUT | None | wechatpy 异常时自动重试
-WECHAT_SESSTION_REDIS_URL | None | eg. redis://localhost:6379/0
-WECHAT_SESSTION_MEMCACHED | None | eg. 127.0.0.1:11211
+WECHAT_SESSION_REDIS_URL | None | eg. redis://localhost:6379/0
+WECHAT_SESSION_MEMCACHED | None | eg. 127.0.0.1:11211
 WECHAT_AES_KEY | None | 微信消息加密的 key，如果是企业号则必填
 WECHAT_TOKEN | None | 微信接收消息时的 token
 WECHAT_OAUTH_URI | None | oauth 时的回调地址，默认为当前 url
